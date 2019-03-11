@@ -12,6 +12,7 @@ const {authenticate} = require('./middleware/authenticate')
 const app = express()
 
 app.use(bodyParser.json())
+const port = process.env.PORT || 3000;
 
 app.post('/todos', authenticate, (req, res) => {
     const todo = new Todo({
@@ -91,8 +92,8 @@ app.delete('/users/me/token', authenticate, (req,res) => {
     })
 })
 
-app.listen (3000, () => {
-    console.log('Started on port 3000')
+app.listen (port, () => {
+    console.log(`Started on port ${port}`)
 })
 
 module.exports = {app}
